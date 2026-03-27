@@ -20,7 +20,7 @@ _model      = None
 _model_meta = None
 
 MODELS_DIR = Path('./models')
-MODEL_KERAS   = MODELS_DIR / 'thyroid_efficientnet.keras'
+MODEL_H5   = MODELS_DIR / 'thyroid_efficientnet.h5'
 META_PATH  = MODELS_DIR / 'model_meta.pkl'
 
 IMG_SIZE   = (224, 224)
@@ -33,13 +33,13 @@ def _load_model():
     if _model is None:
         import tensorflow as tf
         from tensorflow import keras
-        if not MODEL_KERAS.exists():
+        if not MODEL_H5.exists():
             raise FileNotFoundError(
-                f'Model not found at {MODEL_KERAS}. '
+                f'Model not found at {MODEL_H5}. '
                 'Train the model first using model.py'
             )
-        print(f'Loading model from {MODEL_KERAS} ...')
-        _model = keras.models.load_model(str(MODEL_KERAS), compile=False, safe_mode=False)
+        print(f'Loading model from {MODEL_H5} ...')
+        _model = keras.models.load_model(str(MODEL_H5), compile=False)
         print('✅ Model loaded.')
     return _model
 
