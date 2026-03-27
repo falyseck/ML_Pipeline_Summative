@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: thyroid-classifier-api
+    name: thyroid-classifier-api1
     env: docker
     plan: free
     autoDeploy: true

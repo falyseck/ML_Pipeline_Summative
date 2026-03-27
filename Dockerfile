@@ -1,4 +1,5 @@
-FROM python:3.10-slim
+# Keras 3.13+ requires Python >=3.11 (needed to load models with newer layer configs)
+FROM python:3.12-slim
 
 WORKDIR /app
 
