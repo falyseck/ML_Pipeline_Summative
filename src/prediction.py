@@ -32,14 +32,29 @@ def _load_model():
     global _model
     if _model is None:
         import tensorflow as tf
-        from tensorflow import keras
         if not MODEL_H5.exists():
             raise FileNotFoundError(
                 f'Model not found at {MODEL_H5}. '
                 'Train the model first using model.py'
             )
         print(f'Loading model from {MODEL_H5} ...')
-        _model = keras.models.load_model(str(MODEL_H5), compile=False)
+        try:
+            # Fast path: load with tf.keras
+            _model = tf.keras.models.load_model(str(MODEL_H5), compile=False)
+        except Exception as e:
+            # Compatibility path for models saved with newer Keras configs
+            # (e.g. Dense config containing "quantization_config")
+            if 'quantization_config' in str(e):
+                try:
+                    import keras
+                    _model = keras.models.load_model(str(MODEL_H5), compile=False)
+                except Exception as inner_e:
+                    raise RuntimeError(
+                        'Model load failed due to Keras version mismatch. '
+                        'Install a newer keras/tensorflow runtime compatible with the saved model.'
+                    ) from inner_e
+            else:
+                raise
         print('✅ Model loaded.')
     return _model
 
