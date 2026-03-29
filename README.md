@@ -6,8 +6,8 @@ Binary classification of thyroid ultrasound images — **Benign vs Malignant** �
 
 ## 🎥 Demo
 
-- **Video Demo:** [YouTube Link — add after recording]
-- **Live UI:** [Thyroid Classifier · Streamlit](https://thyroid-classifier-ui.streamlit.app/)
+- **Video Demo:** [https://youtu.be/vAoCSVoRtFY]
+- **Live UI:** [Thyroid Classifier · Streamlit](https://thyroid-classifier.streamlit.app/)
 - **Live API:** [Thyroid Cancer Classifier API](https://thyroid-classifier-api1.onrender.com/)
 - **API Docs (Swagger UI):** [https://your-api.onrender.com/docs](https://thyroid-classifier-api1.onrender.com/docs) 
 
